@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+# set -x
 CONVERT_BIN_PATH="/usr/bin/convert"
 
 function help() {
@@ -12,11 +12,15 @@ function help() {
     -h                 帮助文档 " && echo
 }
 
-function install_dependent() {
+function check_dependent() {
     if [[ -f ${CONVERT_BIN_PATH} ]]; then
         return
     else
-        eval "$(sudo apt install imagemagick -y)"
+        #  -r        do not allow backslashes to escape any characters
+        read -p "imagemagick package not installed, do you want to install it ?" -r confirm && echo
+        if [[ $confirm =~ ^[Yy]$ ]]; then
+            sudo apt install imagemagick -y
+        fi
     fi
 }
 # 对jpeg格式图片进行图片质量压缩
@@ -119,6 +123,8 @@ function suffix {
         echo "${i} is renamed to ${filename}"
     done
 }
+
+check_dependent
 
 case "$1" in
 "-q")
