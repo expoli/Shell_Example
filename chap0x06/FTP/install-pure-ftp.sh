@@ -3,7 +3,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
 set -e
-set -x
+# set -x
 
 # PURE_FTP_CONFIG_ROOT_PATH="./test/pure-ftpd/"
 PURE_FTP_CONFIG_ROOT_PATH="/etc/pure-ftpd/"
