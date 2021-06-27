@@ -43,18 +43,19 @@ function checkRoot() {
 function backupConfigFile() {
     filepath=$1
     if [[ -f "${filepath}"${BACKUP_FILE_SUFFIX} ]]; then
-        cp -r "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
+        mv "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
         echo "Backup ${filepath} to ${filepath}${BACKUP_FILE_SUFFIX}_${DATE}"
         finish=1
     elif [[ -d "${filepath}"${BACKUP_FILE_SUFFIX} ]]; then
-        cp -r "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
+        mv "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
         echo "Backup ${filepath} to ${filepath}${BACKUP_FILE_SUFFIX}_${DATE}"
+        mkdir -p ${filepath}
         finish=1
     fi
 
     if [[ ! -n ${finish} ]]; then
         echo "Backing up ${filepath} ..."
-        cp -r "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}
+        mv "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}
         if [[ $? != '0' ]]; then
             echo 'Backup Error! Exiting... make sure the file is exist'
             exit 1
@@ -142,10 +143,10 @@ function setConfigDetail() {
     authenticated users, and run a public anon-only FTP server on another IP.
     Default vlaue: \"\"")
 
-    CONFIG_DETAIL+=(['Umask']="File creation mask. <umask for files>:<umask for dirs> .
-    177:077 if you feel paranoid.
-    Default value: 133:022")
-    CONFIG_DEFAULT_VALUE+=(['Umask']="133:022")
+    # CONFIG_DETAIL+=(['Umask']="File creation mask. <umask for files>:<umask for dirs> .
+    # 177:077 if you feel paranoid.
+    # Default value: 133:022")
+    # CONFIG_DEFAULT_VALUE+=(['Umask']="133:022")
 
     CONFIG_DETAIL+=(['DontResolve']="Don't resolve host names in log files. Recommended unless you trust
     reverse host names, and don't care about DNS resolution being possibly slow.
