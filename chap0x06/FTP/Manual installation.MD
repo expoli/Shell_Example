@@ -90,6 +90,9 @@ nobody
 
 5. 需要留意的参数
 
+<details>
+<summary>需要留意的参数</summary>
+
 ```
 -2 cert_file[,key_file]
         When  using  TLS,  set the path to the certificate file. The certificate and its key can be be bundled into a single file, or the key can be in a distinct
@@ -179,3 +182,5 @@ nobody
 -Z     Add safe guards against common customer mistakes (like chmod 0 on their own files) .
 
 ```
+
+</details>
