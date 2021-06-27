@@ -184,3 +184,42 @@ nobody
 ```
 
 </details>
+
+6. 启动 pure-ftp 
+
+```bash
+# 启动
+sudo systemctl start pure-ftpd.service
+# 开机启动
+sudo systemctl enable pure-ftpd.service
+# 运行状态
+sudo systemctl status pure-ftpd.service
+```
+
+7. 登录 ftp 
+
+```bash
+tcy@ubuntu-base:~/workdir$ ftp 127.0.0.1
+Connected to 127.0.0.1.
+220---------- Welcome to Pure-FTPd [privsep] [TLS] ----------
+220-You are user number 1 of 50 allowed.
+220-Local time is now 07:52. Server port: 21.
+220-IPv6 connections are also welcome on this server.
+220 You will be disconnected after 15 minutes of inactivity.
+Name (127.0.0.1:tcy): tcy
+331 User tcy OK. Password required
+Password:
+230 OK. Current directory is /home/tcy
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+200 PORT command successful
+150 Connecting to port 49987
+-rw-------    1 tcy        tcy              1878 Jun 26 06:40 autoinstall-user-data
+drwxrwxr-x    4 tcy        tcy              4096 Jun 27 05:46 workdir
+226-Options: -l 
+226 2 matches total
+ftp> exit
+221-Goodbye. You uploaded 0 and downloaded 0 kbytes.
+221 Logout.
+```
