@@ -43,7 +43,7 @@ function checkRoot() {
 function backupConfigFile() {
     filepath=$1
     if [[ -f "${filepath}"${BACKUP_FILE_SUFFIX} ]]; then
-        mv "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
+        cp "${filepath}" "${filepath}"${BACKUP_FILE_SUFFIX}_"${DATE}"
         echo "Backup ${filepath} to ${filepath}${BACKUP_FILE_SUFFIX}_${DATE}"
         finish=1
     elif [[ -d "${filepath}"${BACKUP_FILE_SUFFIX} ]]; then
@@ -184,13 +184,13 @@ function manualConfigPureFtp() {
     echo "Note: this not contain every parameter, just some i think it is useful. If you want know more, can read ${PURE_FTP_CONFIG_ROOT_PATH}/${PURE_FTP_CONFIG_NAMR}${BACKUP_FILE_SUFFIX}"
 
     for name in "${!CONFIG_DETAIL[@]}"; do
-        echo "CONFIG_DETAIL[\'${name}\']"
+        echo "${CONFIG_DETAIL[${name}]}"
         read -r -p "Do you want to config by yourself? (y/n)? defult no!" confim
         confim=${confim:-no}
         if [[ ! "$confim" =~ y|Y ]]; then
             if [[ ${CONFIG_DEFAULT_VALUE[${name}]} ]]; then
-                echo "configing ${name}, and the value is ${CONFIG_DEFAULT_VALUE[\'${name}\']}"
-                echo "${CONFIG_DEFAULT_VALUE[\'${name}\']}" >${PURE_FTP_PARAMETER_CONFIG_DIR}/"${name}"
+                echo "configing ${name}, and the value is ${CONFIG_DEFAULT_VALUE[$name]}"
+                echo "${CONFIG_DEFAULT_VALUE[$name]}" > ${PURE_FTP_PARAMETER_CONFIG_DIR}/"${name}"
             fi
         else
             read -r -p "Please input correct value" value
