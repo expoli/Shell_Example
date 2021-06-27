@@ -109,7 +109,8 @@ OPTIONS
               Limit  the number of simultaneous connections coming from the same IP address. This is yet another very effective way to prevent stupid denial of services
               and bandwidth starvation by a single user.  It works only when the server is launched in standalone mode (if you use a super-server, it is supposed to  do
               that).  If  the  server is launched with -C 2 , it doesn't mean that the total number of connection is limited to 2.  But the same client, coming from the
-              same machine (or at least the same IP), can't have more than two simultaneous connections. This features needs some memory to track IP addresses, but it's recommended to use it.
+              same machine (or at least the same IP), can't have more than two simultaneous connections. This features needs some memory to track IP addresses, but it's
+              recommended to use it.
 
        -d     turns on debug logging. Every command is logged, except that the argument to PASS is changed to "<password>". If you repeat -d , responses too are logged.
 
@@ -248,7 +249,8 @@ OPTIONS
 
        -V ip address
               Allow non-anonymous FTP access only on this specific local IP address. All other IP addresses are only anonymous. With that option, you  can  have  routed
-              IPs  for  public  access, and a local IP (like 10.x.x.x) for administration. You can also have a routable trusted IP protected by firewall rules, and only that IP can be used to login as a non-anonymous user.
+              IPs  for  public  access, and a local IP (like 10.x.x.x) for administration. You can also have a routable trusted IP protected by firewall rules, and only
+              that IP can be used to login as a non-anonymous user.
 
        -w     Enable support for the FXP protocol, for non-anonymous users only.
 
@@ -315,17 +317,14 @@ ANONYMOUS FTP
        and you will get a secure, anonymous-only FTP server.
 
 VIRTUAL SERVERS
-       You can run several different anonymous FTP servers on one host, by giving the host  several  IP  addresses  with  different  DNS
-       names.
+       You can run several different anonymous FTP servers on one host, by giving the host several IP addresses with different DNS names.
 
-       Here  are  the  steps  needed  to  create  an  extra server using an IP alias on linux 2.4.x, called "ftp.example.com" on address
-       10.11.12.13. on the IP alias eth0.
+       Here are the steps needed to create an extra server using an IP alias on linux 2.4.x, called "ftp.example.com" on address 10.11.12.13. on the IP alias eth0.
 
-       1. Create an "ftp" account if you do not have one. It it best if the account does not have a valid home directory  and  shell.  I
-       prefer to make /dev/null the ftp account's home directory and shell.  Ftpd uses this account to set the anonymous users' uid.
+       1. Create an "ftp" account if you do not have one. It it best if the account does not have a valid home directory and shell. I prefer to make /dev/null  the  ftp
+       account's home directory and shell.  Ftpd uses this account to set the anonymous users' uid.
 
-       2.  Create  a directory as described in Anonymous FTP and make a symlink called /etc/pure-ftpd/pure-ftpd/10.11.12.13 which points
-       to this directory.
+       2. Create a directory as described in Anonymous FTP and make a symlink called /etc/pure-ftpd/pure-ftpd/10.11.12.13 which points to this directory.
 
        3. Make sure your kernel has support for IP aliases.
 
@@ -335,23 +334,21 @@ VIRTUAL SERVERS
 
        That should be all. If you have problems, here are some things to try.
 
-       First, symlink /etc/pure-ftpd/pure-ftpd/127.0.0.1 to some directory and say "ftp localhost". If that  doesn't  log  you  in,  the
-       problem is with ftpd.
+       First, symlink /etc/pure-ftpd/pure-ftpd/127.0.0.1 to some directory and say "ftp localhost". If that doesn't log you in, the problem is with ftpd.
 
-       If not, "ping -v 10.11.12.13" and/or "ping -v ftp.example.com" from the same host. If this does not work, the problem is with the
-       IP alias.
+       If not, "ping -v 10.11.12.13" and/or "ping -v ftp.example.com" from the same host. If this does not work, the problem is with the IP alias.
 
-       Next, try "ping -v 10.11.12.13" from a host on the local ethernet, and afterwards "/sbin/arp -a". If 10.11.12.13 is listed  among
-       the  ARP  entries with the correct hardware address, the problem is probably with the IP alias. If 10.11.12.13 is listed, but has
-       hardware address 0:0:0:0:0:0, then proxy-ARP isn't working.
+       Next, try "ping -v 10.11.12.13" from a host on the local ethernet, and afterwards "/sbin/arp -a". If 10.11.12.13 is listed among the ARP entries with the correct
+       hardware address, the problem is probably with the IP alias. If 10.11.12.13 is listed, but has hardware address 0:0:0:0:0:0, then proxy-ARP isn't working.
 
        If none of that helps, I'm stumped. Good luck.
 
-       Warning: If you setup a virtual hosts, normal users will not be able to login via this name, so don't  create  link/directory  in /etc/pure-ftpd/pure-ftpd for your regular hostname.
+       Warning: If you setup a virtual hosts, normal users will not be able to login via this name, so don't create link/directory in /etc/pure-ftpd/pure-ftpd for  your
+       regular hostname.
+
 
 PROTOCOL
        Here are the FTP commands supported by this server.
-       ABOR ALLO APPE AUTH TLS CCC CDUP CWD DELE EPRT EPSV ESTA ESTP FEAT HELP LIST MDTM MFMT MKD MLSD MLST MODE  NLST  NOOP  PASS  PASV
-       PBSZ  PORT  PROT PWD QUIT REST RETR RMD RNFR RNTO SIZE SPSV STAT STOR STOU STRU SYST TYPE USER XCUP XCWD XDBG XMKD XPWD XRMD OPTS
-       MLST OPTS UTF8 SITE CHMOD SITE HELP SITE IDLE SITE TIME SITE UTIME
+       ABOR  ALLO  APPE AUTH TLS CCC CDUP CWD DELE EPRT EPSV ESTA ESTP FEAT HELP LIST MDTM MFMT MKD MLSD MLST MODE NLST NOOP PASS PASV PBSZ PORT PROT PWD QUIT REST RETR
+       RMD RNFR RNTO SIZE SPSV STAT STOR STOU STRU SYST TYPE USER XCUP XCWD XDBG XMKD XPWD XRMD OPTS MLST OPTS UTF8 SITE CHMOD SITE HELP SITE IDLE SITE TIME SITE UTIME
 ```
