@@ -43,3 +43,13 @@ Description-en: Secure and efficient FTP server
  text / HTML / XML real-time status report, virtual users, virtual quotas,
  privilege separation, SSL/TLS and more.
 ```
+
+## 软件选型
+
+- 需求
+  - 有加密措施
+  - 配置简单
+  - 有状态报告
+
+- 选型结果
+  - pure-ftpd
