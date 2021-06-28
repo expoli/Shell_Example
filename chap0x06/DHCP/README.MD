@@ -168,7 +168,7 @@ tcy@dhcp-server:~/Shell_Example$ diff /etc/netplan/00-installer-config.yaml /etc
 <       dhcp4: no
 <       addresses:
 <         - 192.168.233.1/24
-<       gateway4: 192.168.233.1
+< #      gateway4: 192.168.233.1
 <       nameservers:
 <           addresses: [8.8.8.8, 1.1.1.1]
 tcy@dhcp-server:~/Shell_Example$ 
