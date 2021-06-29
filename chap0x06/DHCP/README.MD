@@ -132,6 +132,17 @@ subnet 10.0.0.0 netmask 255.255.255.0 {
 
 2. 最简配置文件
 
+```conf
+option domain-name-servers 8.8.8.8, 1.0.0.1;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+subnet 192.168.233.0 netmask 255.255.255.0 {
+    range 192.168.233.20 192.168.233.200;
+}
+```
+
 ### 5. 修改配置文件
 
 1. 查看网卡名称
