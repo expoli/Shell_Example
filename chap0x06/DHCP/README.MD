@@ -25,7 +25,7 @@
 
 ## 2. 开始配置
 
-### 1. 安装 `isc-dhcp-serve`
+### 1. 安装 `isc-dhcp-server`
 
 ```bash
 sudo apt update && sudo apt install isc-dhcp-server
